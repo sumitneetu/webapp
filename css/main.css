@@ -1103,7 +1103,7 @@ li.tg-rss a{background:#ff6600;}
 .tg-wrapper{overflow:hidden;}
 .tg-header{border-bottom: 2px solid;}
 body.tg-home .tg-main{padding: 20px 0;}
-.tg-main{padding: 120px 0;}
+.tg-main{padding: 20px 0;}
 .tg-twocolumns{
 	width: 100%;
 	float: left;
@@ -1805,7 +1805,6 @@ body.tg-login .tg-useradminbox,
 .tg-tags li + li{padding: 0 0 0 10px;}
 .tg-tag{
 	color: #999;
-	float: left;
 	padding: 0 10px;
 	min-height: 20px;
 	font-size: 12px;

@@ -1,6 +1,5 @@
 'use strict';
-var app = angular.module('MobileAngularUiExamples', ['ngRoute','mobile-angular-ui','ui.bootstrap','mobile-angular-ui.gestures'
-]);
+var app = angular.module('MobileAngularUiExamples', ['ngRoute','mobile-angular-ui','ui.bootstrap','mobile-angular-ui.gestures','vcRecaptcha']);
 
 app.run(function($transform,$templateCache,$rootScope) {
   window.$transform = $transform;
@@ -16,5 +15,7 @@ app.config(function($routeProvider) {
   $routeProvider.when('/message', {templateUrl: 'templates/message.html',controller:'MessageCtrl', reloadOnSearch: false,'cache':false});
   $routeProvider.when('/profile', {templateUrl: 'templates/profile.html',controller:'ProfileCtrl', reloadOnSearch: false,'cache':false});
   $routeProvider.when('/managejobs', {templateUrl: 'templates/managejobs.html',controller:'JobsCtrl', reloadOnSearch: false,'cache':false});
+  $routeProvider.when('/howitwork', {templateUrl: 'templates/howitwork.html', reloadOnSearch: false,'cache':false});
+  $routeProvider.when('/portfolio', {templateUrl: 'templates/portfolio.html', reloadOnSearch: false,'cache':false});
 });
 
