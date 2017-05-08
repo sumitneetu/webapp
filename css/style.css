@@ -36,3 +36,9 @@ color:#5dc560 !important;
 .pad-left-0 {
 padding-left:0px;
 }
+
+.userImage img{
+    width: 133px;
+    height: 133px;
+    border-radius: 96px;
+}

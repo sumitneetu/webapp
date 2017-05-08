@@ -4,6 +4,11 @@ app.controller('MainCtrl',function($rootScope, $scope,$location) {
       $location.path(page);
   }
   
+  $scope.logout = function() {  
+      $location.path("login");
+  }
+  
+  
    console.log("this is your app's controller");
                 $scope.response = null;
                 $scope.widgetId = null;

@@ -9,7 +9,7 @@
 							<h1>Login / Register</h1>
 						</div>
 						<ol class="tg-breadcrumb">
-							<li><a href="HTML/html/service_provider/loginregister.html#">Home</a></li>
+							<li><a href="">Home</a></li>
 							<li class="tg-active">Login - Register</li>
 						</ol>
 					</div>
@@ -31,8 +31,8 @@
 									</div>
 									<fieldset>
 										<ul class="tg-tabnav" role="tablist">
-											<li role="presentation" class="active">
-												<a href="HTML/html/service_provider/loginregister.html#regularuser" data-toggle="tab" aria-expanded="true">
+											<li role="presentation" ng-class="firsttab ? 'active' : ''" ng-click="registerTabs('first')" >
+												<a href="" data-toggle="tab" aria-expanded="true">
 													<span class="lnr lnr-user"></span>
 													<div class="tg-navcontent">
 														<h3>Regular Single User</h3>
@@ -40,8 +40,8 @@
 													</div>
 												</a>
 											</li>
-											<li role="presentation" class="">
-												<a href="HTML/html/service_provider/loginregister.html#company" data-toggle="tab" aria-expanded="false">
+											<li role="presentation" ng-class="secoundtab ? 'active' : ''" ng-click="registerTabs('secound')">
+												<a href="" data-toggle="tab" aria-expanded="false">
 													<span class="lnr lnr-briefcase"></span>
 													<div class="tg-navcontent">
 														<h3>Company / Professional</h3>
@@ -51,10 +51,10 @@
 											</li>
 										</ul>
 										<div class="tg-themetabcontent tab-content">
-											<div class="tab-pane fade active in" id="regularuser">
+											<div class="tab-pane fade in" id="regularuser" ng-class="firsttab ? 'active' : ''">
 												<div class="form-group">
 													<div class="tg-registeras">
-														<span>Already have an account?<a href="HTML/html/service_provider/loginregister.html#"> Login Now</a></span>
+														<span>Already have an account?<a href=""> Login Now</a></span>
 													</div>
 												</div>
 												<div class="form-group">
@@ -81,24 +81,11 @@
 												<div class="form-group">
 													<input type="password" name="retype-password" class="form-control" placeholder="Retype Password">
 												</div>
-												<div class="form-group">
 												
-            <div
-                vc-recaptcha
-                theme="'light'"
-                key="model.key"
-                on-create="setWidgetId(widgetId)"
-                on-success="setResponse(response)"
-                on-expire="cbExpiration()"
-            ></div>
-           
-       
-
-												</div>
 												<div class="form-group">
 													<div class="tg-checkbox">
 														<input type="checkbox" id="terms">
-														<label for="terms">I have read the <a href="HTML/html/service_provider/loginregister.html#">Terms &amp; Conditions</a> and accept them</label>
+														<label for="terms">I have read the <a href="">Terms &amp; Conditions</a> and accept them</label>
 													</div>
 												</div>
 												<button class="tg-btn" type="submit">Register Now</button>
@@ -153,7 +140,7 @@
 													</li>
 												</ul>
 											</div>
-											<div class="tab-pane fade" id="company">
+											<div class="tab-pane fade in" id="company" ng-class="secoundtab ? 'active' : ''">
 												<div class="form-group">
 													<div class="tg-registeras">
 														<span>Register As:</span>
@@ -210,12 +197,9 @@
 													<input type="password" name="retype-password" class="form-control" placeholder="Retype Password">
 												</div>
 												<div class="form-group">
-													ddf
-												</div>
-												<div class="form-group">
 													<div class="tg-checkbox">
 														<input type="checkbox" id="conditions">
-														<label for="conditions">I have read the <a href="HTML/html/service_provider/loginregister.html#">Terms &amp; Conditions</a> and accept them</label>
+														<label for="conditions">I have read the <a href="">Terms &amp; Conditions</a> and accept them</label>
 													</div>
 												</div>
 												<button class="tg-btn" type="submit">Register Now</button>
@@ -263,39 +247,7 @@
 													<li class="tg-vimeo">
 														<a class="tg-roundicontext" href="javascript:void(0);">
 															<em class="tg-usericonholder">
-											<script>
-		(function($) {
-			var launch = new Date(2018, 06, 14, 11, 15);
-			var days = $('#days');
-			var hours = $('#hours');
-			var minutes = $('#minutes');
-			var seconds = $('#seconds');
-			setDate();
-			function setDate(){
-				var now = new Date();
-				if( launch < now ){
-					days.html('<p>Days</p><h1>0</h1>');
-					hours.html('<p>hrs</p><h1>0</h1>');
-					minutes.html('<p>Min</p><h1>0</h1>');
-					seconds.html('<p>Sec</p><h1>0</h1>');
-				}
-				else{
-					var s = -now.getTimezoneOffset()*60 + (launch.getTime() - now.getTime())/1000;
-					var d = Math.floor(s/86400);
-					days.html('<h1>'+d+'</h1><p>Day'+(d>1?'s':''),'</p>');
-					s -= d*86400;
-					var h = Math.floor(s/3600);
-					hours.html('<h1>'+h+'</h1><p>Hour'+(h>1?'s':''),'</p>');
-					s -= h*3600;
-					var m = Math.floor(s/60);
-					minutes.html('<h1>'+m+'</h1><p>Minute'+(m>1?'s':''),'</p>');
-					s = Math.floor(s-m*60);
-					seconds.html('<h1>'+s+'</h1><p>Second'+(s>1?'s':''),'</p>');
-					setTimeout(setDate, 1000);
-				}
-			}
-		})(jQuery);
-	</script>
+											
 					<i class="fa fa-vimeo"></i>
 																<span>vimeo</span>
 															</em>
@@ -321,7 +273,7 @@
 											<div class="form-group">
 												<button class="tg-btn tg-btn-lg" type="submit">Login Now</button>
 											</div>
-											<a class="tg-btnforgotpass" href="HTML/html/service_provider/loginregister.html#">Forgot your password?</a>
+											<a class="tg-btnforgotpass" href="" ng-click="goToPage('forget')">Forgot your password?</a>
 										</fieldset>
 										
 									</div>
