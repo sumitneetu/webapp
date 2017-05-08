@@ -19,5 +19,6 @@ app.config(function($routeProvider) {
   $routeProvider.when('/howitwork', {templateUrl: 'templates/howitwork.html', reloadOnSearch: false,'cache':false});
   $routeProvider.when('/portfolio', {templateUrl: 'templates/portfolio.html', reloadOnSearch: false,'cache':false});
   $routeProvider.when('/freelancers', {templateUrl: 'templates/freelancers.html', reloadOnSearch: false,'cache':false});
+   $routeProvider.when('/postjob', {templateUrl: 'templates/postjob.html', reloadOnSearch: false,'cache':false});
 });
 
