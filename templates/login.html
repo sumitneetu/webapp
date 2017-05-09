@@ -24,7 +24,7 @@
 				<div class="container">
 					<div class="row">
 						<div id="tg-content" class="tg-content">
-							<form class="tg-themeform tg-formlogin-register">
+							<div class="tg-themeform tg-formlogin-register">
 								<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
 									<div class="tg-heading">
 										<h2>Register As</h2>
@@ -35,8 +35,8 @@
 												<a href="" data-toggle="tab" aria-expanded="true">
 													<span class="lnr lnr-user"></span>
 													<div class="tg-navcontent">
-														<h3>Regular Single User</h3>
-														<span>Register As Service Seeker</span>
+														<h3>Freelancer</h3>
+														<span>Work As Job Seeker</span>
 													</div>
 												</a>
 											</li>
@@ -44,42 +44,73 @@
 												<a href="" data-toggle="tab" aria-expanded="false">
 													<span class="lnr lnr-briefcase"></span>
 													<div class="tg-navcontent">
-														<h3>Company / Professional</h3>
-														<span>Register As Service Provider</span>
+														<h3>Work</h3>
+														<span>Register As Job Provider</span>
 													</div>
 												</a>
 											</li>
 										</ul>
 										<div class="tg-themetabcontent tab-content">
+											<!--  Start regular user form start--> 
 											<div class="tab-pane fade in" id="regularuser" ng-class="firsttab ? 'active' : ''">
+											<form name="regularuser"  class="regularuser" >
+												
 												<div class="form-group">
 													<div class="tg-registeras">
-														<span>Already have an account?<a href=""> Login Now</a></span>
+														
 													</div>
 												</div>
-												<div class="form-group">
-													<input type="text" name="text" class="form-control" placeholder="Your Name">
+												<div class="form-group" style="width:100%;" ng-class="{ 'has-error' : regularuser.username.$invalid && !regularuser.username.$pristine }">
+													 <input type="text" name="username" class="form-control" ng-change="validateUserName(user.username)" ng-model="user.username" placeholder="Username" ng-minlength="2" required>
+													 <div class="error" ng-messages="regularuser.username.$error"  ng-if="regularuser.username.$touched">
+														<p ng-message="required" >Username is required</p>
+														<p ng-message="minlength">Username is too short</p>
+													  </div>
+												</div>
+												
+												<div class="form-group" ng-class="{ 'has-error' : regularuser.firstname.$invalid && !regularuser.firstname.$pristine }">
+													 <input type="text" name="firstname" class="form-control" ng-model="user.firstname" placeholder="First Name" ng-minlength="2" required>
+													 <div class="error" ng-messages="regularuser.firstname.$error"  ng-if="regularuser.firstname.$touched">
+														<p ng-message="required" >Firstname is required</p>
+														<p ng-message="minlength">Firstname is too short</p>
+													  </div>
+												</div>
+												<div class="form-group" ng-class="{ 'has-error' : regularuser.lastname.$invalid && !regularuser.lastname.$pristine }">
+													 <input type="text" name="lastname" class="form-control" ng-model="user.lastname" placeholder="Last Name" ng-minlength="2" required>
+													 <div class="error" ng-messages="regularuser.lastname.$error"  ng-if="regularuser.lastname.$touched">
+														<p ng-message="required" >lastname is required</p>
+														<p ng-message="minlength">lastname is too short</p>
+													  </div>
 												</div>
 												<div class="form-group">
 													<span class="tg-select">
-														<select>
-															<option>Gender</option>
-															<option>Male</option>
-															<option>Female</option>
-														</select>
+														<select  class="SignupInp downarrow appraence"  ng-model="user.country_name"  ng-model-options="{allowInvalid: true}" ng-options="cname.id as cname.countries_name for cname in countries track by cname.id" ng-required="true" name="country_name" ng-change="GetState(user.country_name)">
+          												 </select>
 													</span>
 												</div>
 												<div class="form-group">
-													<input type="text" name="text" class="form-control" placeholder="Mobile">
+													<input type="email" name="email" class="form-control" placeholder="Email" ng-minlength="2" ng-model="user.email" required>
+													<div class="error" ng-messages="regularuser.email.$error"  ng-if="regularuser.email.$touched">
+														<p ng-message="required" >Email is required</p>
+														<p ng-message="minlength">Email is too short</p>
+														<p ng-message="email">Please enter valid email</p>
+													 </div>
 												</div>
 												<div class="form-group">
-													<input type="email" name="email" class="form-control" placeholder="Email">
+													<input type="password" name="password" class="form-control" placeholder="Password" ng-minlength="2"  ng-model="user.password" required>
+														 <div class="error" ng-messages="regularuser.password.$error" ng-if="regularuser.password.$touched">
+															  <p ng-message="required" >Password is required</p>
+															  <p ng-message="minlength">Password is too short</p>
+														 </div>
 												</div>
 												<div class="form-group">
-													<input type="password" name="password" class="form-control" placeholder="Password">
-												</div>
-												<div class="form-group">
-													<input type="password" name="retype-password" class="form-control" placeholder="Retype Password">
+													<input type="password" placeholder="Confirm Password" name="cnfpassword" ng-minlength="2" class="form-control" ng-model="user.cnfpassword" ng-pattern="{{user.password}}">
+													 <div class="error" ng-messages="regularuser.cnfpassword.$error" ng-if="regularuser.cnfpassword.$touched">
+														  <p ng-message="required" >Confirm Password is required</p>
+														  <p ng-message="minlength">Confirm Password is too short</p>
+														  <p ng-message="pattern">Password does not match</p>
+													  </div>
+													
 												</div>
 												
 												<div class="form-group">
@@ -88,7 +119,10 @@
 														<label for="terms">I have read the <a href="">Terms &amp; Conditions</a> and accept them</label>
 													</div>
 												</div>
-												<button class="tg-btn" type="submit">Register Now</button>
+												<!--<button class="tg-btn" type="submit" ng-disabled="regularuser.$invalid" ng-click="signUp(user)">{{rbutton}}</button> -->
+												<jp-ng-bs-animated-button is-submitting="isSubmitting" result="result" ng-disabled="regularuser.$invalid"  class="tg-btn" ng-click="signUp(user)" options="buttonOption">
+												    
+												</jp-ng-bs-animated-button>
 												<ul class="tg-socialicons tg-socialsharewithtext">
 													<li class="tg-facebook">
 														<a class="tg-roundicontext" href="javascript:void(0);">
@@ -139,70 +173,90 @@
 														</a>
 													</li>
 												</ul>
+											
+											</form>
 											</div>
-											<div class="tab-pane fade in" id="company" ng-class="secoundtab ? 'active' : ''">
+											<!--  End regular user form end-->
+											
+											<!--  Start work user form start-->
+											 <div class="tab-pane fade in" id="company" ng-class="secoundtab ? 'active' : ''">
+											<form name="workuser"  class="workuser" >
+												
 												<div class="form-group">
 													<div class="tg-registeras">
-														<span>Register As:</span>
-														<div class="tg-radio">
-															<input type="radio" id="business" name="register" checked="">
-															<label for="business">Business</label>
-														</div>
-														<div class="tg-radio">
-															<input type="radio" id="professional" name="register">
-															<label for="professional">professional</label>
-														</div>
+														
 													</div>
 												</div>
-												<div class="form-group">
-													<span class="tg-select">
-														<select>
-															<option>Business Category</option>
-															<option>Business Category</option>
-															<option>Business Category</option>
-															<option>Business Category</option>
-															<option>Business Category</option>
-														</select>
-													</span>
+												<div class="form-group" style="width:100%;" ng-class="{ 'has-error' : workuser.username.$invalid && !workuser.username.$pristine }">
+													 <input type="text" name="username" class="form-control" ng-change="validateUserName(user.username)" ng-model="wuser.username" placeholder="Username" ng-minlength="2" required>
+													 <div class="error" ng-messages="workuser.username.$error"  ng-if="workuser.username.$touched">
+														<p ng-message="required" >Username is required</p>
+														<p ng-message="minlength">Username is too short</p>
+													  </div>
+												</div>
+												
+												<div class="form-group" ng-class="{ 'has-error' : workuser.firstname.$invalid && !workuser.firstname.$pristine }">
+													 <input type="text" name="firstname" class="form-control" ng-model="wuser.firstname" placeholder="First Name" ng-minlength="2" required>
+													 <div class="error" ng-messages="workuser.firstname.$error"  ng-if="workuser.firstname.$touched">
+														<p ng-message="required" >Firstname is required</p>
+														<p ng-message="minlength">Firstname is too short</p>
+													  </div>
+												</div>
+												<div class="form-group" ng-class="{ 'has-error' : workuser.lastname.$invalid && !workuser.lastname.$pristine }">
+													 <input type="text" name="lastname" class="form-control" ng-model="wuser.lastname" placeholder="Last Name" ng-minlength="2" required>
+													 <div class="error" ng-messages="workuser.lastname.$error"  ng-if="workuser.lastname.$touched">
+														<p ng-message="required" >lastname is required</p>
+														<p ng-message="minlength">lastname is too short</p>
+													  </div>
+												</div>
+												<div class="form-group" ng-class="{ 'has-error' : workuser.companyname.$invalid && !workuser.companyname.$pristine }">
+													 <input type="text" name="companyname" class="form-control" ng-model="wuser.companyname" placeholder="Company Name"  required>
+													 <div class="error" ng-messages="workuser.companyname.$error"  ng-if="workuser.companyname.$touched">
+														<p ng-message="required" >Company is required</p>
+														
+													  </div>
 												</div>
 												<div class="form-group">
 													<span class="tg-select">
-														<select>
-															<option>Business Sub Category</option>
-															<option>Business Sub Category</option>
-															<option>Business Sub Category</option>
-															<option>Business Sub Category</option>
-															<option>Business Sub Category</option>
-														</select>
+														<select  class="SignupInp downarrow appraence"  ng-model="user.country_name"  ng-model-options="{allowInvalid: true}" ng-options="cname.id as cname.countries_name for cname in countries track by cname.id" ng-required="true" name="country_name" ng-change="GetState(user.country_name)">
+          												 </select>
 													</span>
 												</div>
 												<div class="form-group">
-													<input type="text" name="text" class="form-control" placeholder="Your Name">
+													<input type="email" name="email" class="form-control" placeholder="Email" ng-minlength="2" ng-model="wuser.email" required>
+													<div class="error" ng-messages="workuser.email.$error"  ng-if="workuser.email.$touched">
+														<p ng-message="required" >Email is required</p>
+														<p ng-message="minlength">Email is too short</p>
+														<p ng-message="email">Please enter valid email</p>
+													 </div>
 												</div>
 												<div class="form-group">
-													<input type="text" name="text" class="form-control" placeholder="Company Title">
-												</div>
-												<div class="form-group tg-inputwithicon">
-													<input type="text" name="geolocation" class="form-control" placeholder="Geo Location">
-													<i class="fa fa-crosshairs tg-icon"></i>
-													<i class="fa fa-angle-down tg-icon"></i>
-												</div>
-												<div class="form-group">
-													<input type="email" name="email" class="form-control" placeholder="Email">
+													<input type="password" name="password" class="form-control" placeholder="Password" ng-minlength="2"  ng-model="wuser.password" required>
+														 <div class="error" ng-messages="workuser.password.$error" ng-if="workuser.password.$touched">
+															  <p ng-message="required" >Password is required</p>
+															  <p ng-message="minlength">Password is too short</p>
+														 </div>
 												</div>
 												<div class="form-group">
-													<input type="password" name="password" class="form-control" placeholder="Password">
+													<input type="password" placeholder="Confirm Password" name="cnfpassword" ng-minlength="2" class="form-control" ng-model="wuser.cnfpassword" ng-pattern="{{user.password}}">
+													 <div class="error" ng-messages="workuser.cnfpassword.$error" ng-if="workuser.cnfpassword.$touched">
+														  <p ng-message="required" >Confirm Password is required</p>
+														  <p ng-message="minlength">Confirm Password is too short</p>
+														  <p ng-message="pattern">Password does not match</p>
+													  </div>
+													
 												</div>
-												<div class="form-group">
-													<input type="password" name="retype-password" class="form-control" placeholder="Retype Password">
-												</div>
+												
 												<div class="form-group">
 													<div class="tg-checkbox">
-														<input type="checkbox" id="conditions">
-														<label for="conditions">I have read the <a href="">Terms &amp; Conditions</a> and accept them</label>
+														<input type="checkbox" id="terms">
+														<label for="terms">I have read the <a href="">Terms &amp; Conditions</a> and accept them</label>
 													</div>
 												</div>
-												<button class="tg-btn" type="submit">Register Now</button>
+												<!--<button class="tg-btn" type="submit" ng-disabled="workuser.$invalid" ng-click="signUp(user)">{{rbutton}}</button> -->
+												<jp-ng-bs-animated-button is-submitting="isSSubmitting" result="result" ng-disabled="workuser.$invalid"  class="tg-btn" ng-click="signUp(user)" options="buttonOption">
+												    
+												</jp-ng-bs-animated-button>
 												<ul class="tg-socialicons tg-socialsharewithtext">
 													<li class="tg-facebook">
 														<a class="tg-roundicontext" href="javascript:void(0);">
@@ -247,14 +301,16 @@
 													<li class="tg-vimeo">
 														<a class="tg-roundicontext" href="javascript:void(0);">
 															<em class="tg-usericonholder">
-											
-					<i class="fa fa-vimeo"></i>
+																<i class="fa fa-vimeo"></i>
 																<span>vimeo</span>
 															</em>
 														</a>
 													</li>
 												</ul>
+											
+											</form>
 											</div>
+											<!--  End work user form end-->
 										</div>
 									</fieldset>
 								</div>
@@ -263,23 +319,35 @@
 										<div class="tg-bordertitle">
 											<h3>Login Now</h3>
 										</div>
-										<fieldset>
-											<div class="form-group">
-												<input type="email" name="email" class="form-control" placeholder="Email">
-											</div>
-											<div class="form-group">
-												<input type="password" name="password" class="form-control" placeholder="Password">
-											</div>
-											<div class="form-group">
-												<button class="tg-btn tg-btn-lg" type="submit">Login Now</button>
-											</div>
-											<a class="tg-btnforgotpass" href="" ng-click="goToPage('forget')">Forgot your password?</a>
-										</fieldset>
-										
+										<form name="loginuser" class="regularuser" >
+											<fieldset>
+												<div class="form-group" ng-class="{ 'has-error' : loginuser.email.$invalid && !loginuser.email.$pristine }">
+													<input type="email" name="email" class="form-control" ng-model="luser.email" placeholder="Email">
+													<div class="error" ng-messages="loginuser.email.$error"  ng-if="loginuser.email.$touched">
+														<p ng-message="required" >Email is required</p>
+														<p ng-message="minlength">Email is too short</p>
+														<p ng-message="email">Please enter valid email</p>
+													 </div>
+												</div>
+												<div class="form-group" ng-class="{ 'has-error' : loginuser.password.$invalid && !loginuser.password.$pristine }">
+													<input type="password" name="password" class="form-control" placeholder="Password" ng-minlength="2"  ng-model="luser.password" required>
+													<div class="error" ng-messages="loginuser.password.$error" ng-if="loginuser.password.$touched">
+															  <p ng-message="required" >Password is required</p>
+															  <p ng-message="minlength">Password is too short</p>
+												    </div>
+												</div>
+												<div class="form-group">
+												<jp-ng-bs-animated-button is-submitting="isSSSubmitting" result="resultdata" ng-disabled="loginuser.$invalid"  class="tg-btn" ng-click="signIn(loginuser)" options="loginbuttonOption">
+												    
+												</jp-ng-bs-animated-button>
+													<!-- <button class="tg-btn tg-btn-lg" type="submit">Login Now</button> -->
+												</div>
+												<a class="tg-btnforgotpass" href="" ng-click="goToPage('forget')">Forgot your password?</a>
+											</fieldset>
+										</form>
 									</div>
-									
 								</div>
-							</form>
+							</div>
 						</div>
 					</div>
 				</div>

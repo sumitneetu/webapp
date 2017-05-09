@@ -1,6 +1,6 @@
 'use strict';
-var app = angular.module('MobileAngularUiExamples', ['ngRoute','mobile-angular-ui','ui.bootstrap','mobile-angular-ui.gestures','vcRecaptcha']);
-
+var app = angular.module('MobileAngularUiExamples', ['ngRoute','mobile-angular-ui','ui.bootstrap','mobile-angular-ui.gestures','ngMessages','jp.ng-bs-animated-button']);
+app.constant('apiURL', 'http://flexsin.org/lab/glocalcircle/webservices/');
 app.run(function($transform,$templateCache,$rootScope) {
   window.$transform = $transform;
    $rootScope.$on('$viewContentLoaded', function() {

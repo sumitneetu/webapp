@@ -20,7 +20,6 @@ img{
     margin-left: 45%;
     font-size: 90px;
 }
-
 .JobParagraph {
 margin:0 0 7px !important;
 color:#000;
@@ -41,4 +40,15 @@ padding-left:0px;
     width: 133px;
     height: 133px;
     border-radius: 96px;
+}
+
+.formerror {
+  color:red;
+}
+.error {
+    border-color: #a94442;
+     color:red;
+}
+.regularuser .form-group {
+margin-bottom:5px;
 }
