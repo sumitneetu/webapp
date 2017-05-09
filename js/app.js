@@ -1,6 +1,7 @@
 'use strict';
-var app = angular.module('MobileAngularUiExamples', ['ngRoute','mobile-angular-ui','ui.bootstrap','mobile-angular-ui.gestures','ngMessages','jp.ng-bs-animated-button']);
+var app = angular.module('MobileAngularUiExamples', ['ngRoute','mobile-angular-ui','ui.bootstrap','mobile-angular-ui.gestures','vcRecaptcha','jp.ng-bs-animated-button']);
 app.constant('apiURL', 'http://flexsin.org/lab/glocalcircle/webservices/');
+app.constant('global_storage', 'JobsStorage_Storage_key');
 app.run(function($transform,$templateCache,$rootScope) {
   window.$transform = $transform;
    $rootScope.$on('$viewContentLoaded', function() {

@@ -52,3 +52,6 @@ padding-left:0px;
 .regularuser .form-group {
 margin-bottom:5px;
 }
+.tg-pagination .active {
+background:#5dc560;
+}

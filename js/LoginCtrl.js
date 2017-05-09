@@ -13,7 +13,6 @@ $scope.registerTabs = function(tab) {
 		$scope.firsttab=false;
 		$scope.secoundtab=true;
 	}
-
 }
 $scope.countries=[{id:0,countries_name:'Select Country'},{id:1,countries_name:'India'},{id:2,countries_name:'China'},{id:3,countries_name:'pakistan'}];
 $scope.buttonOption={
@@ -26,7 +25,7 @@ $scope.user.country_name={id:0};
 
 $scope.wuser={};
 $scope.wuser.country_name={id:0};
-   $scope.isSSubmitting=null;
+$scope.isSSubmitting=null;
 $scope.signUp = function(user) { 
 if($scope.firsttab) {
   if (!$scope.regularuser.$valid) {
@@ -64,7 +63,7 @@ $scope.signIn = function(user) {
                 $scope.resultdata='success';
                 if (response.status == 200) {
                     if (response.data.status == "true") {
-                      JobsStorage.setGlocalStorage("remember", true);
+                     
                     $location.path('home');
                     } else {
                         $scope.one_login = false;
