@@ -8,19 +8,15 @@ app.controller('JobsCtrl',function($rootScope, $scope,$location,PagerService) {
             if (page < 1 || page > $scope.pager.totalPages) {
                 return;
             }
+            console.log(page);
 			// get pager object from service
             $scope.pager = PagerService.GetPager($scope.dummyItems.length, page);
-
+            console.log($scope.pager);
+			console.log($scope.pager.startIndex);
+			console.log($scope.pager.endIndex + 1);
             // get current page of items
             $scope.items = $scope.dummyItems.slice($scope.pager.startIndex, $scope.pager.endIndex + 1);
             console.log($scope.items);
         }
-
-        $scope.initController=function() {
-            // initialize to page 1
-            $scope.setPage(1);
-        }
-        $scope.initController();
-        
-
+		$scope.setPage(1);
 });
